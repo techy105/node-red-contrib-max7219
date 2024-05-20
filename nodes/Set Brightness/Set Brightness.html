@@ -1,0 +1,27 @@
+<script type="text/javascript">
+    RED.nodes.registerType('Set Brightness',{
+        category: 'MAX7219',
+        color: '#FFAAAA',
+        inputs: 0,
+        outputs: 1,
+		icon: "font-awesome/fa-spinner",
+		align: "left",
+		defaults: {
+			brightness: {
+				value: 5,
+				validate: val => parseInt(val) && val >= 0 && val <= 15
+			}	
+		},
+    });
+</script>
+
+<script type="text/html" data-template-name="Set Brightness">
+ 	<div class="form-row">
+        <label for="node-input-brightness"><i class="fa fa-tag"></i> Brightness</label>
+        <input type="text" id="node-input-brightness" placeholder="Brightness">
+    </div>
+</script>
+
+<script type="text/html" data-help-name="Set Brightness">
+    <p>Set the brightness of the display between 0 (off) and 15 (max)</p>
+</script>

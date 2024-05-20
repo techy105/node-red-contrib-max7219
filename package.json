@@ -11,7 +11,8 @@
  "node-red": {
   "nodes": {
    "Initialise": "nodes/Init/Init.js",
-   "Cleanup": "nodes/Cleanup/Cleanup.js"
+   "Cleanup": "nodes/Cleanup/Cleanup.js",
+   "Set Brightness": "nodes/Set Brightness/Set Brightness.js"
   }
  },
  "dependencies": {

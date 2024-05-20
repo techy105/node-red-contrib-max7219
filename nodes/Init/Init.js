@@ -10,7 +10,7 @@ module.exports = function(RED){
 			const spiDevice = parseInt(msg.payload?.max7219?.device || config.spiDevice);
 
 			try {
-				const context = await MAX7219.initialise(spiBus, spiDevice);
+				const context = MAX7219.initialise(spiBus, spiDevice);
 
 				const flow = this.context().flow;
 				flow.MAX7219Context = context;
