@@ -51,5 +51,5 @@ module.exports = function(RED){
 			}
 		})
 	}
-	RED.nodes.registerType("Initialise", InitNode)
+	RED.nodes.registerType("MAX - Initialise", InitNode)
 }

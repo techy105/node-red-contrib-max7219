@@ -38,5 +38,5 @@ module.exports = function(RED){
 			return msg;
 		});
 	}
-	RED.nodes.registerType("Cleanup", Cleanup)
+	RED.nodes.registerType("MAX - Cleanup", Cleanup)
 }

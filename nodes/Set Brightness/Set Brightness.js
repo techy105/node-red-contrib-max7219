@@ -40,5 +40,5 @@ module.exports = function(RED){
 			return msg;
 		});
 	}
-	RED.nodes.registerType("Set Brightness", SetBrightness)
+	RED.nodes.registerType("MAX - Set Brightness", SetBrightness)
 }
