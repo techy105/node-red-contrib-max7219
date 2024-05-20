@@ -49,7 +49,7 @@ function setBrightness(context, level){
 		throw new Error("Brightness must be between 0 and 15")
 	}
 
-	context.write(context, MAX7219_REG_INTENSITY, level)
+	write(context, MAX7219_REG_INTENSITY, level)
 	return true;
 }
 function clear(context){
