@@ -45,7 +45,11 @@ module.exports = function(RED){
 
 				delete flow.MAX7219Context;
 			} 
-
+			this.status({
+					fill: "red",
+					shape: "ring",
+					text: "Cleaned up and closed."
+			});
 			if(done){
 				done();
 			}
