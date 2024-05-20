@@ -43,7 +43,7 @@ module.exports = function(RED){
 			if(flow.MAX7219Context){
 				MAX7219.cleanup(flow.MAX7219Context);
 
-				flow.MAX7219Context = null
+				delete flow.MAX7219Context;
 			} 
 
 			if(done){

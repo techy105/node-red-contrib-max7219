@@ -1,5 +1,5 @@
 const SPI = require("spi-device");
-
+const FONTS = require("./fonts");
 // Portions of this code have been taken from the great work of: https://github.com/SebSchwartz/node-max7219-led-matrix/blob/master/index.js
 
 const MAX7219_REG_DECODEMODE = 0x9;
@@ -52,6 +52,31 @@ function setBrightness(context, level){
 	write(context, MAX7219_REG_INTENSITY, level)
 	return true;
 }
+
+function letter(context, letter, font="CP437_FONT"){
+    let asciiCode = letter.charCodeAt(0);
+
+    if(asciiCode > 256 || asciiCode < 0){
+        throw 'Bad letter: ' + letter;
+    }
+	const fontSet = FONTS[font];
+	if(!fontSet){
+		throw new Error("Bad font: " + font);
+	}
+
+    var column = MAX7219_REG_DIGIT0;
+    var fontChar = fontSet[asciiCode];
+    for(var index in fontChar){
+        if(column > MAX7219_REG_DIGIT7){
+            clear();
+        }
+        write(context, col, fontChar[index]);
+        column++;
+    }
+}
+
+
+
 function clear(context){
  	for(var i; i<NUM_DIGITS; i++){
         write(context, MAX7219_REG_DIGIT0 + i, 0x0);
@@ -76,5 +101,6 @@ module.exports = {
 	initialise,
 	cleanup,
 	write,
-	setBrightness
+	setBrightness,
+	letter
 }

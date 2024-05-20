@@ -12,6 +12,7 @@
   "nodes": {
    "Initialise": "nodes/Init/Init.js",
    "Cleanup": "nodes/Cleanup/Cleanup.js",
+   "Letter": "nodes/Letter/Letter.js",
    "Set Brightness": "nodes/Set Brightness/Set Brightness.js"
   }
  },

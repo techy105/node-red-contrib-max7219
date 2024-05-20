@@ -1,0 +1,49 @@
+<script type="text/javascript">
+    RED.nodes.registerType('MAX - Letter',{
+        category: 'MAX7219',
+        color: '#FFAAAA',
+        inputs: 1,
+        outputs: 1,
+		icon: "font-awesome/fa-letter",
+		align: "left",
+		defaults: {
+			letter: {
+				value: "a",
+				validate: val => val.charCodeAt(0) >= 0 && val.charCodeAt(0) <= 256 && val.length === 1,
+				length: 1
+			}	
+		},
+		oneditprepare: () => {
+			$("#node-input-font").typedInput({
+				type:"font",
+				types: [
+					{
+						value: "CP437_FONT",
+						options: [
+							{ value: "CP437_FONT", label: "CP437"},
+							{ value: "SINCLAIR_FONT", label: "Sinclair ZX Spectrum"},
+							{ value: "UKR_FONT", label: "Cyrillic Ukrainian"},
+							{ value: "LCD_FONT", label: "LCD"},
+							{ value: "TINY_FONT", label: "Tiny"}
+						]
+					}
+				]
+			})
+		} 
+    });
+</script>
+
+<script type="text/html" data-template-name="MAX - Letter">
+ 	<div class="form-row">
+        <label for="node-input-letter"><i class="fa fa-tag"></i> Letter</label>
+        <input type="text" id="node-input-letter" placeholder="Letter">
+    </div>
+ 	<div class="form-row">
+        <label for="node-input-font"><i class="fa fa-tag"></i> Font</label>
+        <input type="text" id="node-input-font" placeholder="Font">
+    </div>
+</script>
+
+<script type="text/html" data-help-name="MAX - Letter">
+    <p>Displays a single letter</p>
+</script>

@@ -1,7 +1,7 @@
 const MAX7219 = require("../../control/max7219");
 
 module.exports = function(RED){
-	function SetBrightness(config){
+	function Letter(config){
 		RED.nodes.createNode(this, config);
 
 		this.on("input", function(msg, send, done) {
@@ -10,26 +10,27 @@ module.exports = function(RED){
 				throw new Error("No MAX7219 context. Initialise must be executed.");
 			}
 			const context = flow.MAX7219Context
-			const brightness = parseInt(msg.payload?.max7219?.brightness || config.brightness);
+			const letter = parseInt(msg.payload?.max7219?.letter || config.letter);
+			const font = parseInt(msg.payload?.max7219?.font || config.font);
 
 
 			try {
-				MAX7219.setBrightness(context, brightness);
+				MAX7219.letter(context, letter, font);
 
 			} catch(e){
 				this.status({
 					fill: "red",
 					shape: "ring",
-					text: "Failed to set brightness"
+					text: "Failed to display letter '"+letter+"'"
 				});
 
-				throw new Error(`Could not set brightness: ${e.message}`)
+				throw new Error(`Could not set letter: ${e.message}`)
 			}
 
 			this.status({
 				fill: "green",
 				shape: "dot",
-				text: "Brightness set to " + brightness
+				text: "Displaying letter '" + letter + "'"
 			})
 
 			send(msg);
@@ -40,5 +41,5 @@ module.exports = function(RED){
 			return msg;
 		});
 	}
-	RED.nodes.registerType("MAX - Set Brightness", SetBrightness)
+	RED.nodes.registerType("MAX - Letter", Letter)
 }
