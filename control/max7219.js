@@ -70,7 +70,7 @@ function letter(context, letter, font="CP437_FONT"){
         if(column > MAX7219_REG_DIGIT7){
             clear();
         }
-        write(context, col, fontChar[index]);
+        write(context, column, fontChar[index]);
         column++;
     }
 }
