@@ -19,15 +19,9 @@ const MAX7219_REG_DIGIT6 = 0x7;
 const MAX7219_REG_DIGIT7 = 0x8;
 
 function initialise(bus, device){
-	let context;
-	try  {
-		context  = SPI.openSync(bus, device, {
-			mode: 0
-		});
-
-	} catch(e){ 
-		throw new Error("Cannot open SPI device: " + e.message)
-	}
+	const context  = SPI.openSync(bus, device, {
+		mode: 0
+	});
 
 	write(context, MAX7219_REG_SCANLIMIT, 7);  // show all 8 digits
 	write(context, MAX7219_REG_DECODEMODE, 0x0); // use matrix (not digits)
