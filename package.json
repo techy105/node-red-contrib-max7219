@@ -1,0 +1,20 @@
+{
+ "name": "node-red-contrib-max7219",
+ "version": "1.0.0",
+ "description": "A set of nodes to control a MAX7219 based pixel display",
+ "main": "index.js",
+ "license": "MIT",
+ "keywords": [
+  "node-red",
+  "max7219"
+ ],
+ "node-red": {
+  "nodes": {
+   "Initialise": "nodes/Init/Init.js",
+   "Cleanup": "nodes/Cleanup/Cleanup.js"
+  }
+ },
+ "dependencies": {
+  "spi-device": "^3.1.2"
+ }
+}
