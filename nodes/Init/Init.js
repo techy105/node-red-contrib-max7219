@@ -21,7 +21,7 @@ module.exports = function(RED){
 					text: "Failed to initialise"
 				});
 
-				throw new Error(`Failed to initialise SPI device: BUS ${spiBus} DEVICE ${spiDevice}`)
+				throw new Error(`Failed to initialise device: /dev/spidev${spiBus}.${spiDevice}: ${e.message}`)
 			}
 
 			this.status({
