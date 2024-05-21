@@ -12,13 +12,13 @@ module.exports = function(RED){
 			
 
 			try {
-				const cleanup = MAX7219.cleanup(spiBus, spiDevice);
+				MAX7219.cleanup(spiBus, spiDevice);
 
 			} catch(e){
 				this.status({
 					fill: "red",
 					shape: "ring",
-					text: "Failed to cleanup"
+					text: "Failed to cleanup: " + e.message
 				});
 
 				throw new Error(`Failed to cleanup!`)
