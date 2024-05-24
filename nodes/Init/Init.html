@@ -14,6 +14,10 @@
 			spiDevice: {
 				value: 0,
 				validate: (val) => parseFloat(val) !== NaN && val >= 0
+			},
+			displayCount: {
+				value: 1,
+				validate: (val) => parseFloat(val) !== NaN && val >= 1
 			}
 		},
     });
@@ -27,6 +31,10 @@
      <div class="form-row">
         <label for="node-input-spiBus"><i class="fa fa-tag"></i> SPI Device</label>
         <input type="text" id="node-input-spiDevice" placeholder="SPI Device e.g. 0">
+    </div>
+     <div class="form-row">
+        <label for="node-input-displayCount"><i class="fa fa-tag"></i> Display Count</label>
+        <input type="text" id="node-input-displayCount" placeholder="1">
     </div>
 </script>
 

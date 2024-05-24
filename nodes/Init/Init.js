@@ -8,9 +8,10 @@ module.exports = function(RED){
 			
 			const spiBus = parseInt(msg.payload?.max7219?.bus || config.spiBus);
 			const spiDevice = parseInt(msg.payload?.max7219?.device || config.spiDevice);
+			const displayCount = parseInt(msg.payload?.max7219?.displayCount || config.displayCount);
 
 			try {
-				const context = MAX7219.initialise(spiBus, spiDevice);
+				const context = MAX7219.initialise(spiBus, spiDevice, displayCount);
 
 				const flow = this.context().flow;
 				flow.MAX7219Context = context;

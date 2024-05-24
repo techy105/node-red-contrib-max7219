@@ -18,7 +18,7 @@ const MAX7219_REG_DIGIT5 = 0x6;
 const MAX7219_REG_DIGIT6 = 0x7;
 const MAX7219_REG_DIGIT7 = 0x8;
 
-function initialise(bus, device){
+function initialise(bus, device, displayCount=1){
 	let context;
 	try {
 		context = SPI.openSync(bus, device, {
@@ -28,8 +28,8 @@ function initialise(bus, device){
 	} catch(e){
 		throw new Error(`Cannot open SPI device /dev/spidev${bus}.${device}.`);
 	}
-	
-	write(context, MAX7219_REG_SCANLIMIT, 7);  // show all 8 digits
+
+	write(context, MAX7219_REG_SCANLIMIT, 7*displayCount);  // show all 8 digits
 	write(context, MAX7219_REG_DECODEMODE, 0x0); // use matrix (not digits)
 	write(context, MAX7219_REG_DISPLAYTEST, 0x0); // no display test
 	write(context, MAX7219_REG_SHUTDOWN, 0x1); // not shutdown mode
