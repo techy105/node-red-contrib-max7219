@@ -19,10 +19,16 @@ const MAX7219_REG_DIGIT6 = 0x7;
 const MAX7219_REG_DIGIT7 = 0x8;
 
 function initialise(bus, device){
-	const context  = SPI.openSync(bus, device, {
-		mode: 0
-	});
+	let context;
+	try {
+		context = SPI.openSync(bus, device, {
+			mode: 0
+		});
 
+	} catch(e){
+		throw new Error(`Cannot open SPI device /dev/spidev${bus}.${device}.`);
+	}
+	
 	write(context, MAX7219_REG_SCANLIMIT, 7);  // show all 8 digits
 	write(context, MAX7219_REG_DECODEMODE, 0x0); // use matrix (not digits)
 	write(context, MAX7219_REG_DISPLAYTEST, 0x0); // no display test
@@ -34,14 +40,15 @@ function initialise(bus, device){
 
 
 function write(context, register, value){
+	const sendBuffer = Buffer.from([register, value]);
 	const message = [{
-		sendBuffer: Buffer.from([register, value]),
-		byteLength: 1
+		sendBuffer: sendBuffer,
+		byteLength: 2
 	}]
 
-    context.transfer(message, function(response) {
-		
-    });
+    const response = context.transferSync(message);
+	
+	console.log("Response: ", response);
 }
 
 function setBrightness(context, level){
@@ -93,6 +100,8 @@ function cleanup(context){
 	setBrightness(context, 15)
 	clear(context);
 
+	//Shutdown the display
+	write(context, MAX7219_REG_SHUTDOWN, 0x1)
 	context.closeSync();
 	return true;
 }
@@ -100,7 +109,6 @@ function cleanup(context){
 module.exports = {
 	initialise,
 	cleanup,
-	write,
 	setBrightness,
 	letter
 }
