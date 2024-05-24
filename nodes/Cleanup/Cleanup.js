@@ -12,7 +12,7 @@ module.exports = function(RED){
 			
 
 			try {
-				MAX7219.cleanup(spiBus, spiDevice);
+				MAX7219.cleanup();
 
 			} catch(e){
 				this.status({
@@ -21,7 +21,7 @@ module.exports = function(RED){
 					text: "Failed to cleanup: " + e.message
 				});
 
-				throw new Error(`Failed to cleanup!`)
+				throw new Error(`Failed to cleanup: ${e.message}`)
 			}
 
 			this.status({
