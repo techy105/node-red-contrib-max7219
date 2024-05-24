@@ -79,7 +79,7 @@ function letter(context, letter, font="CP437_FONT"){
         }
         write(context, column, fontChar[index]);
 
-		wait(1);
+		wait(10);
         column++;
     }
 }
