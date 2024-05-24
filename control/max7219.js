@@ -78,6 +78,8 @@ function letter(context, letter, font="CP437_FONT"){
             clear();
         }
         write(context, column, fontChar[index]);
+
+		wait(1);
         column++;
     }
 }
@@ -104,6 +106,15 @@ function cleanup(context){
 	write(context, MAX7219_REG_SHUTDOWN, 0x1)
 	context.closeSync();
 	return true;
+}
+
+/** Code below is NOT proted from python **/
+function wait(ms){
+	const tsNow = Date.now();
+	const tsTarget = tsNow + ms;
+	while(Date.now() < tsTarget){
+		var noop;
+	}
 }
 
 module.exports = {
