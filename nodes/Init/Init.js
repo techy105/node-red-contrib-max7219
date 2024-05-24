@@ -20,8 +20,7 @@ module.exports = function(RED){
 					shape: "ring",
 					text: "Failed to initialise"
 				});
-
-				throw new Error(`Failed to initialise device: /dev/spidev${spiBus}.${spiDevice}: ${e.message}`)
+				return false;
 			}
 
 			this.status({
